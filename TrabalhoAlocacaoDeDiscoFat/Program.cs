@@ -54,6 +54,7 @@ void AdicionarArquivo()
     memoryService.AddArquivo(arquivo, tamanho, startIndex);
     Console.WriteLine("Arquivo salvo Com sucesso!!!");
     Console.ReadLine();
+    //ExibirMemory();
     return;
 }
 
@@ -76,8 +77,11 @@ void ExibirFat()
     Console.WriteLine("Tabela Fat");
 
     var table =  new ConsoleTable("Index", "Next Index", "Memory Poiter");
-    for (int i = 0; i < data.Count; i++)
-        table.AddRow(i, data[i].nextIndex, data[i].DataIndex);
+    for (int i = 0; i < data.Length; i++)
+    {
+        if (data[i] == null) continue;
+        table.AddRow(i, data[i]!.Value.nextIndex, data[i]!.Value.DataIndex);
+    }
 
     table.Write();
     Console.ReadLine();
@@ -109,4 +113,5 @@ void ExcluirArquivos()
     Console.WriteLine("Arquivo deletado com sucesso!!!");
     Console.ReadLine();
     return;
+
 }

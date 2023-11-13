@@ -10,7 +10,7 @@ namespace TrabalhoAlocacaoDeDiscoFat.Service
     public struct MemoryService
     {
         private string[] Memory = new string[10];
-        private List<(int nextIndex, int DataIndex)> Fat = new();
+        private (int nextIndex, int DataIndex)?[] Fat = new (int nextIndex, int DataIndex)?[10];
         private List<Arquivo> Arquivos = new();
         public MemoryService()
         {
@@ -19,7 +19,7 @@ namespace TrabalhoAlocacaoDeDiscoFat.Service
         }
 
         public string[] GetMemory() => Memory;
-        public List<(int nextIndex, int DataIndex)> GetFat() => Fat;
+        public (int nextIndex, int DataIndex)?[] GetFat() => Fat;
         public List<Arquivo> GetArquivos() => Arquivos;
 
         public void ExcluirArquivo(string name) 
@@ -45,8 +45,8 @@ namespace TrabalhoAlocacaoDeDiscoFat.Service
             for (int i =0; i < indexs.Count; i++)
             {
                 Memory[indexs[i]] = file;
-                Fat.Add((nextIndex, indexs[i]));
-                nextIndex = Fat.IndexOf(Fat.Last());
+                Fat[indexs[i]] = (nextIndex, indexs[i]);
+                nextIndex = indexs[i];
             }
 
             return nextIndex;
@@ -67,9 +67,11 @@ namespace TrabalhoAlocacaoDeDiscoFat.Service
             
             while (startIndex != -1)
             {
-                (int nextIndex, int DataIndex) = Fat[startIndex];
+                var fat = Fat[startIndex];
+                int nextIndex = fat!.Value.nextIndex;
+                int DataIndex = fat!.Value.DataIndex;
                 Memory[DataIndex] = "";
-                Fat.Remove(Fat[startIndex]);
+                Fat[startIndex] = null;
                 startIndex = nextIndex;
             }
         }

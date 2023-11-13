@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrabalhoAlocacaoDeDiscoFat.Models
 {
-    public struct Arquivo
+    public class Arquivo
     {
         public string Name { get; set; }
         public int Space { get; set; }
