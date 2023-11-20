@@ -53,7 +53,7 @@ void AdicionarArquivo()
     var startIndex = memoryService.AddData(indexs, arquivo!);
     memoryService.AddArquivo(arquivo, tamanho, startIndex);
     Console.WriteLine("Arquivo salvo Com sucesso!!!");
-    Console.ReadLine();
+    ExibirFat();
     //ExibirMemory();
     return;
 }
@@ -111,7 +111,7 @@ void ExcluirArquivos()
     memoryService.RemoveData(arquivo.StartIndex);
     memoryService.ExcluirArquivo(nome);
     Console.WriteLine("Arquivo deletado com sucesso!!!");
-    Console.ReadLine();
+    ExibirFat();
     return;
 
 }
