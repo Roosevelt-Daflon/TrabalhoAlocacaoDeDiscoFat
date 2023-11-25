@@ -19,12 +19,13 @@ void MainMenu()
     do
     {
         Console.Clear();
-        Console.WriteLine("1 - Adiconar Arquivo");
-        Console.WriteLine("2 - Visulizar Memeoria Principal");
-        Console.WriteLine("3 - Visulizar Fat");
-        Console.WriteLine("4 - Deleta Arquivo");
-        Console.WriteLine("5 - Visualizar todos Arquivos");
+        Console.WriteLine("1 - Adicionar Arquivo");
+        Console.WriteLine("2 - Visualizar Memória Principal");
+        Console.WriteLine("3 - Visualizar Fat");
+        Console.WriteLine("4 - Deletar Arquivo");
+        Console.WriteLine("5 - Visualizar todos os Arquivos");
         Console.WriteLine("Digite qualquer outro numero para sair");
+        Console.WriteLine();
         Console.Write("Digite o numero do menu: ");
         menu = Convert.ToInt32(Console.ReadLine());
         Console.Clear();
@@ -43,7 +44,7 @@ void AdicionarArquivo()
     Console.Write("Escreva o tamanho do arquivo: ");
     tamanho = Convert.ToInt32(Console.ReadLine());
     var indexs = memoryService.GetFreeIndex(tamanho);
-    if(indexs == null)
+    if (indexs == null)
     {
         Console.WriteLine("Sem Espaço");
         Console.ReadLine();
@@ -76,7 +77,7 @@ void ExibirFat()
     var data = memoryService.GetFat();
     Console.WriteLine("Tabela Fat");
 
-    var table =  new ConsoleTable("Index", "Next Index", "Memory Poiter");
+    var table = new ConsoleTable("Index", "Next Index", "Memory Pointer");
     for (int i = 0; i < data.Length; i++)
     {
         if (data[i] == null) continue;
